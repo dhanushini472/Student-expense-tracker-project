@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - Student Expense Tracker</title>
+
+    <link rel="stylesheet"
+        href="style.css">
+
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+
+                <div class="brand-icon">
+                    ₹
+                </div>
+
+                <div>
+                    <h2>ExpenseTrack</h2>
+                    <small>Student Finance</small>
+                </div>
+
+            </div>
+
+
+            <nav>
+
+                <button
+                    class="nav-item active"
+                    onclick="showSection('dashboardSection', this)">
+
+                    <span>⌂</span>
+                    Dashboard
+
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('expensesSection', this)">
+
+                    <span>−</span>
+                    Expenses
+
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('incomeSection', this)">
+
+                    <span>+</span>
+                    Income
+
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('budgetSection', this)">
+
+                    <span>▣</span>
+                    Smart Budget
+
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('emergencySection', this)">
+
+                    <span>♥</span>
+                    Emergency Fund
+
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    onclick="showSection('futureSection', this)">
+
+                    <span>◷</span>
+                    Future Expenses
+
+                </button>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <div class="user-mini">
+
+                    <div
+                        class="avatar"
+                        id="sidebarAvatar">
+                        S
+                    </div>
+
+                    <div>
+
+                        <strong id="sidebarName">
+                            Student
+                        </strong>
+
+                        <small>
+                            Student Account
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="logout-button"
+                    onclick="logout()">
+
+                    Logout
+
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN -->
+
+        <main class="main">
+
+            <header class="topbar">
+
+                <div>
+
+                    <h1 id="pageTitle">
+                        Dashboard
+                    </h1>
+
+                    <p id="welcomeText">
+                        Welcome back!
+                    </p>
+
+                </div>
+
+                <div class="top-date"
+                    id="currentDate">
+                </div>
+
+            </header>
+
+
+            <!-- DASHBOARD -->
+
+            <section
+                id="dashboardSection"
+                class="page-section">
+
+                <div class="summary-grid">
+
+                    <div class="summary-card income-card">
+
+                        <div class="card-icon">
+                            ↑
+                        </div>
+
+                        <div>
+
+                            <p>Total Income</p>
+
+                            <h2 id="dashboardIncome">
+                                ₹0
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-card expense-card">
+
+                        <div class="card-icon">
+                            ↓
+                        </div>
+
+                        <div>
+
+                            <p>Total Expenses</p>
+
+                            <h2 id="dashboardExpense">
+                                ₹0
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-card balance-card">
+
+                        <div class="card-icon">
+                            ₹
+                        </div>
+
+                        <div>
+
+                            <p>Current Balance</p>
+
+                            <h2 id="dashboardBalance">
+                                ₹0
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-card saving-card">
+
+                        <div class="card-icon">
+                            ★
+                        </div>
+
+                        <div>
+
+                            <p>Savings Rate</p>
+
+                            <h2 id="savingRate">
+                                0%
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-grid">
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <h2>Spending Overview</h2>
+
+                                <p>
+                                    Category-wise expenses
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            id="categoryChart"
+                            class="category-chart">
+                        </div>
+
+                    </div>
+
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <h2>Quick Actions</h2>
+
+                                <p>
+                                    Manage your finances
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="quick-actions">
+
+                            <button
+                                onclick="showSectionById('expensesSection')">
+
+                                <span>−</span>
+
+                                <div>
+                                    <strong>Add Expense</strong>
+                                    <small>Record spending</small>
+                                </div>
+
+                            </button>
+
+
+                            <button
+                                onclick="showSectionById('incomeSection')">
+
+                                <span>+</span>
+
+                                <div>
+                                    <strong>Add Income</strong>
+                                    <small>Record money received</small>
+                                </div>
+
+                            </button>
+
+
+                            <button
+                                onclick="showSectionById('emergencySection')">
+
+                                <span>♥</span>
+
+                                <div>
+                                    <strong>Emergency Fund</strong>
+                                    <small>Build your safety net</small>
+                                </div>
+
+                            </button>
+
+
+                            <button
+                                onclick="showSectionById('futureSection')">
+
+                                <span>◷</span>
+
+                                <div>
+                                    <strong>Plan Expense</strong>
+                                    <small>Prepare for future</small>
+                                </div>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>Recent Expenses</h2>
+
+                            <p>
+                                Your latest transactions
+                            </p>
+
+                        </div>
+
+                        <button
+                            class="small-button"
+                            onclick="showSectionById('expensesSection')">
+
+                            View All
+
+                        </button>
+
+                    </div>
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Date</th>
+                                    <th>Category</th>
+                                    <th>Description</th>
+                                    <th>Payment</th>
+                                    <th>Amount</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody
+                                id="recentExpenseTable">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- EXPENSES -->
+
+            <section
+                id="expensesSection"
+                class="page-section hidden">
+
+                <div class="section-title">
+
+                    <div>
+
+                        <h2>Expense Management</h2>
+
+                        <p>
+                            Track every rupee you spend.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-panel">
+
+                    <h2>Add New Expense</h2>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>Amount</label>
+
+                            <input
+                                type="number"
+                                id="expenseAmount"
+                                placeholder="₹ Enter amount">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Category</label>
+
+                            <select id="expenseCategory">
+
+                                <option value="">
+                                    Select category
+                                </option>
+
+                                <option>Food</option>
+                                <option>Travel</option>
+                                <option>Education</option>
+                                <option>Entertainment</option>
+                                <option>Shopping</option>
+                                <option>Hostel</option>
+                                <option>Health</option>
+                                <option>Mobile & Internet</option>
+                                <option>Other</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Description</label>
+
+                            <input
+                                type="text"
+                                id="expenseDescription"
+                                placeholder="What did you spend on?">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Payment Method</label>
+
+                            <select id="paymentMethod">
+
+                                <option>Cash</option>
+                                <option>UPI</option>
+                                <option>Debit Card</option>
+                                <option>Credit Card</option>
+                                <option>Bank Transfer</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="primary-button"
+                        onclick="addExpense()">
+
+                        Add Expense
+
+                    </button>
+
+                    <p id="expenseMessage"
+                        class="message">
+                    </p>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>All Expenses</h2>
+
+                            <p>
+                                Complete transaction history
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Date</th>
+                                    <th>Category</th>
+                                    <th>Description</th>
+                                    <th>Payment</th>
+                                    <th>Amount</th>
+                                    <th>Action</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody
+                                id="expenseTable">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- INCOME -->
+
+            <section
+                id="incomeSection"
+                class="page-section hidden">
+
+                <div class="section-title">
+
+                    <div>
+
+                        <h2>Income Management</h2>
+
+                        <p>
+                            Keep track of money coming in.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-panel">
+
+                    <h2>Add Income</h2>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>Amount</label>
+
+                            <input
+                                type="number"
+                                id="incomeAmount"
+                                placeholder="₹ Enter amount">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Income Source</label>
+
+                            <select id="incomeSource">
+
+                                <option value="">
+                                    Select source
+                                </option>
+
+                                <option>Scholarship</option>
+                                <option>Allowance</option>
+                                <option>Part-time Job</option>
+                                <option>Freelancing</option>
+                                <option>Internship</option>
+                                <option>Family</option>
+                                <option>Other</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Description</label>
+
+                            <input
+                                type="text"
+                                id="incomeDescription"
+                                placeholder="Income description">
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="primary-button"
+                        onclick="addIncome()">
+
+                        Add Income
+
+                    </button>
+
+                    <p
+                        id="incomeMessage"
+                        class="message">
+                    </p>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <h2>Income History</h2>
+
+                    </div>
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Date</th>
+                                    <th>Source</th>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                    <th>Action</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody
+                                id="incomeTable">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- BUDGET -->
+
+            <section
+                id="budgetSection"
+                class="page-section hidden">
+
+                <div class="section-title">
+
+                    <div>
+
+                        <h2>Smart Budget</h2>
+
+                        <p>
+                            Set spending limits for each category.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-panel">
+
+                    <h2>Set Category Budget</h2>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>Category</label>
+
+                            <select id="budgetCategory">
+
+                                <option>Food</option>
+                                <option>Travel</option>
+                                <option>Education</option>
+                                <option>Entertainment</option>
+                                <option>Shopping</option>
+                                <option>Hostel</option>
+                                <option>Health</option>
+                                <option>Mobile & Internet</option>
+                                <option>Other</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Budget Amount</label>
+
+                            <input
+                                type="number"
+                                id="budgetAmount"
+                                placeholder="₹ Monthly limit">
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="primary-button"
+                        onclick="saveBudget()">
+
+                        Save Budget
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="budgetCards"
+                    class="budget-grid">
+                </div>
+
+            </section>
+
+
+            <!-- EMERGENCY FUND -->
+
+            <section
+                id="emergencySection"
+                class="page-section hidden">
+
+                <div class="section-title">
+
+                    <div>
+
+                        <h2>Emergency Fund</h2>
+
+                        <p>
+                            Build a financial safety net.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="emergency-layout">
+
+                    <div class="emergency-main">
+
+                        <div class="fund-circle">
+
+                            <div>
+
+                                <strong
+                                    id="fundPercentage">
+                                    0%
+                                </strong>
+
+                                <span>
+                                    Funded
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <h2 id="emergencyCurrent">
+                            ₹0
+                        </h2>
+
+                        <p>
+                            saved of
+                            <strong>
+                                ₹20,000
+                            </strong>
+                        </p>
+
+
+                        <div class="progress-bar">
+
+                            <div
+                                id="fundProgress"
+                                class="progress-fill">
+                            </div>
+
+                        </div>
+
+
+                        <div class="fund-split">
+
+                            <div>
+
+                                <span>
+                                    Quick Access 20%
+                                </span>
+
+                                <strong
+                                    id="quickAccess">
+                                    ₹0
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Hard Lock 80%
+                                </span>
+
+                                <strong
+                                    id="hardLock">
+                                    ₹0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-panel">
+
+                        <h2>Add to Emergency Fund</h2>
+
+                        <input
+                            type="number"
+                            id="emergencyAmount"
+                            placeholder="Enter amount">
+
+                        <button
+                            class="primary-button"
+                            onclick="addEmergencyFund()">
+
+                            Add Money
+
+                        </button>
+
+
+                        <hr>
+
+
+                        <h2>Withdraw</h2>
+
+                        <input
+                            type="number"
+                            id="withdrawAmount"
+                            placeholder="Enter withdrawal amount">
+
+                        <button
+                            class="danger-button"
+                            onclick="withdrawEmergencyFund()">
+
+                            Withdraw
+
+                        </button>
+
+                        <p
+                            id="emergencyMessage"
+                            class="message">
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FUTURE EXPENSE -->
+
+            <section
+                id="futureSection"
+                class="page-section hidden">
+
+                <div class="section-title">
+
+                    <div>
+
+                        <h2>Future Expense Forecast</h2>
+
+                        <p>
+                            Plan upcoming expenses before they happen.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="forecast-card">
+
+                    <div>
+
+                        <span>
+                            Total Planned Expenses
+                        </span>
+
+                        <strong id="forecastAmount">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Suggested Monthly Saving
+                        </span>
+
+                        <strong id="monthlySaving">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Suggested Weekly Saving
+                        </span>
+
+                        <strong id="weeklySaving">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-panel">
+
+                    <h2>Add Future Expense</h2>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>Expense Name</label>
+
+                            <input
+                                type="text"
+                                id="futureExpenseName"
+                                placeholder="Example: Laptop">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Expected Amount</label>
+
+                            <input
+                                type="number"
+                                id="futureExpenseAmount"
+                                placeholder="₹ Amount">
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="primary-button"
+                        onclick="addFutureExpense()">
+
+                        Add Future Expense
+
+                    </button>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <h2>Planned Expenses</h2>
+
+                    <div
+                        id="futureExpenseList"
+                        class="future-list">
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
